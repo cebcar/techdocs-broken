@@ -1,6 +1,6 @@
- # macOS
+# macOS
 
 ## Shortcuts
 
-roL  Launchpad
+ F4  Launchpad
 roD  Show/Hide Dock
