@@ -56,7 +56,7 @@ pbcopy < ~/.ssh/id_ed25519.pub
 - verify: additional known_host at ~/.ssh
 
 ### Create New Repository
-GitHub : ‘cebcar’ : New Repository
+GitHub : ‘cebcar’ : Repositories : New
 - supply repo Name and Description
 - make repository “Public”
 - add license, normally MIT <br><br>
