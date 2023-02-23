@@ -1,4 +1,5 @@
 # GitHub
+
 ## Tool GitHub
 WebApp @ https://github.com<br/>
 *provides hosting for software development and version control using Git*<br/>
@@ -9,11 +10,55 @@ WebApp @ https://github.com<br/>
 
 ## Using GitHub
 
+### Connect to GitHub via SSH
+NOTE: GitHub advice is to use ONLY the SSH Agent provided with macOS.
+
+Generate SSH Keys
+- generate keys
+```shell
+ssh-keygen -t ed25519 -C "carolclark@cebcar"
+```
+- save at ~/.ssh/id_ed25519; supply passphrase
+
+- verify connection via SSH Agent
+```shell
+eval "$(ssh-agent -s)
+```
+
+Authenticate with GitHub via SSH
+- create file ~/.ssh/config
+  - copy content from GitHub SSH
+  - currently:<br>
+```plaintext
+    Host *
+      AddKeysToAgent yes
+      UseKeychain yes
+      IdentityFile: ~/.ssh/id_ed25519
+```
+- add GitHub SSH private key to SSH Agent
+```
+ssh --add -K ~/.ssh/id_ed25519
+```
+- copy key to pasteboard
+```
+pbcopy < ~/.ssh/id_ed25519.pub
+```
+- add SSH private key to GitHub
+
+  - Settings : Developer : SSH &amp; GPG Keys : New SSH Key; paste in key<br><br>
+
+- verify connection
+  - check count of existing known_hosts, if any<br><br>
+  ```
+  ssh -T git@github.com
+  ```
+  - continue if displayed key matches<br><br>
+- verify: additional known_host at ~/.ssh
+
 ### Create New Repository
 GitHub : ‘cebcar’ : New Repository
 - supply repo Name and Description
 - make repository “Public”
-- initialize repo with a README
 - add license, normally MIT <br><br>
 
 - merge
@@ -26,6 +71,8 @@ GitHub : ‘cebcar’ : New Repository
     - Projects; we use ZenHub projects
     - Preserve this repository; intended for long-term preservation of shared open-source code <br><br>
 
+### Add Initial Files
+
 - .gitignore
   - do not ignore .gitignore
     >!.gitignore
@@ -33,7 +80,29 @@ GitHub : ‘cebcar’ : New Repository
     > .cebcar
   - [.gitignore](https://cebcar.w3spaces.com/TechDocs/tools/Git.md#gitignore): add content for macOS
 
-- README.md: check header
+- .gitconfig
+TODO: correct configuration is to have exactly one of these at ~
+*required to connect to GitHub*
+```
+[user]
+	name = Carol Clark
+	email = 3742721+carolclark@users.noreply.github.com
+[init]
+	defaultBranch = main
+[diff]
+	tool = vimdiff
+[merge]
+	tool = vimdiff
+[pull]
+	rebase = false
+[difftool]
+	prompt = true
+```
+
+- README.md
+```shell
+echo "README.md\n\n&lt;repo description&gt;" >> README.md
+```
 
 ### OAuth Tokens
 *from [Access Tokens @ oauth.com](https://www.oauth.com/oauth2-servers/access-tokens/)*
