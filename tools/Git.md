@@ -151,6 +151,12 @@ add `-p` to get just the diffs to the file that ended up in conflict
 - discard changes since a specified commit
 > git reset --hard <commit>
 
+- undo a merge commit
+> git reset --merge &lt;previous-commit&gt;
+
+- undo push
+> git push origin <branch> --force
+
 ### Related Maintenance
 - !! remove a non-empty (.git) directory with all contents
 > rm --recursive --force &lt;dirname&gt;
